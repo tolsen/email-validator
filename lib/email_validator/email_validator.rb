@@ -28,15 +28,8 @@ module EmailValidator
 
     MAX_SIZE_EMAIL = 254
     
-
-    LOCAL_PART_ALLOWED_SPECIAL_CHARS =
-      [ '!', '#', '$', '%', '&', '\'', '*', '+', '-', '/', '=',
-        '?', '^', '_', '`', '{', '\\', '}', '~' ]
-
-    LOCAL_PART_ESCAPED_ALLOWED_SPECIAL_CHARS =
-      LOCAL_PART_ALLOWED_SPECIAL_CHARS.map { |c| "\\#{c}" }.join('')
-    
-    LOCAL_PART_ATEXT = "[[:alnum:]#{LOCAL_PART_ESCAPED_ALLOWED_SPECIAL_CHARS}]"
+    LOCAL_PART_ALLOWED_SPECIAL_CHARS = '!#$%&\'*+/=?^_`{|}~-'
+    LOCAL_PART_ATEXT = "[[:alnum:]#{LOCAL_PART_ALLOWED_SPECIAL_CHARS}]"
     LOCAL_PART_ATOM = "#{LOCAL_PART_ATEXT}+"
     LOCAL_PART_DOT_ATOM = "#{LOCAL_PART_ATOM}(\\.#{LOCAL_PART_ATOM})*"
     

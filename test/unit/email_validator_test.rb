@@ -59,7 +59,7 @@ class EmailValidatorTest < Test::Unit::TestCase
   end
 
   def test_local_part_some_strange_chars_allowed
-    assert_valid_email '!#$%@c.d'
+    assert_valid_email '!#$%&\'*+-/=?^_`{|}~@c.d'
   end
 
   def test_local_part_other_strange_char_not_allowed
