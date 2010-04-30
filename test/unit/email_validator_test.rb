@@ -65,6 +65,9 @@ class EmailValidatorTest < Test::Unit::TestCase
   def test_local_part_other_strange_char_not_allowed
     assert_not_valid_email 'a@a@c.d'
     assert_not_valid_email 'a(b)@c.d'
+
+    # backslashes (quoted parts) currently not supported
+    assert_not_valid_email 'a\b@c.d'
   end
 
   def test_local_part_up_to_64_chars
