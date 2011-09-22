@@ -19,7 +19,7 @@ Jeweler::Tasks.new do |gem|
   gem.license = "MIT"
   gem.summary = %Q{Simple Ruby library to validate the format of email addresses}
   gem.description = %Q{Simple Ruby library to validate the format of email addresses}
-  gem.email = "tim@jux.com"
+  gem.email = "tolsen@alum.mit.edu"
   gem.authors = ["Tim Olsen"]
   # dependencies defined in Gemfile
 end
