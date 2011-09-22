@@ -18,4 +18,32 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-require File.dirname(__FILE__) + '/email_validator/email_validator'
+module EmailValidator
+
+  unless defined? LOCAL_PART_ATEXT
+    MAX_SIZE_LOCAL_PART = 64
+
+    # optimized out by overall email size
+#    MAX_SIZE_DOMAIN = 255 
+
+    MAX_SIZE_EMAIL = 254
+
+    ALNUM = "A-Za-z0-9"
+    LOCAL_PART_ALLOWED_SPECIAL_CHARS = '!#$%&\'*+/=?^_`{|}~-'
+    LOCAL_PART_ATEXT = "[#{ALNUM}#{LOCAL_PART_ALLOWED_SPECIAL_CHARS}]"
+    LOCAL_PART_ATOM = "#{LOCAL_PART_ATEXT}+"
+    LOCAL_PART_DOT_ATOM = "#{LOCAL_PART_ATOM}(\\.#{LOCAL_PART_ATOM})*"
+    
+    SUBDOMAIN = "[#{ALNUM}]+([-#{ALNUM}]+[#{ALNUM}])?"
+    DOMAIN = "(#{SUBDOMAIN}\\.)+#{SUBDOMAIN}\\.?"
+
+    LENGTH_CHECK = "(?=.{1,#{MAX_SIZE_EMAIL}}$)(?=.{1,#{MAX_SIZE_LOCAL_PART}}\@.+$)"
+
+    EMAIL = "#{LENGTH_CHECK}#{LOCAL_PART_DOT_ATOM}\@#{DOMAIN}"
+
+    EMAIL_RX = /^#{EMAIL}$/
+  end
+  
+  def self.valid_email?(email) !!EMAIL_RX.match(email); end
+
+end
