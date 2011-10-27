@@ -92,5 +92,9 @@ class EmailValidatorTest < Test::Unit::TestCase
   def test_email_up_over_254_chars_not_allowed
     assert_not_valid_email "a@#{'b' * 251}.c"
   end
+
+  def test_email_domain_ending_with_a_period
+    assert_valid_email 'a@b.c.'
+  end
     
 end
