@@ -41,7 +41,7 @@ module EmailValidator
 
     EMAIL = "#{LENGTH_CHECK}#{LOCAL_PART_DOT_ATOM}\@#{DOMAIN}"
 
-    EMAIL_RX = /\A#{EMAIL}\z/
+    EMAIL_RX = /^#{EMAIL}$/
   end
   
   def self.valid_email?(email) !!EMAIL_RX.match(email); end
